@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body class="main">
+    <div class="calc">
+      <div class="block block1">
+        <input type="number" id="input1" autofocus />
+        <input type="number" id="input2" class="none" />
+        <div class="values" id="values"></div>
+      </div>
+      <section class="secondPart">
+        <div class="block block2">
+          <button data-number>1</button>
+          <button data-number>2</button>
+          <button data-number>3</button>
+          <button data-number>4</button>
+          <button data-number>5</button>
+          <button data-number>6</button>
+          <button data-number>7</button>
+          <button data-number>8</button>
+          <button data-number>9</button>
+          <button data-number class="zero">0</button>
+          <button data-number class="point">.</button>
+        </div>
+        <div class="block block3">
+          <button id="clearAll">AC</button>
+          <button id="clear">
+            <img src="./img/delete-svgrepo-com.svg" alt="" />
+          </button>
+          <button id="signChange">+/-</button>
+          <button id="sqrt">√</button>
+          <button id="degree" data-sign>^</button>
+          <button data-sign>+</button>
+          <button data-sign>-</button>
+          <button data-sign class="multi">*</button>
+          <button data-sign>/</button>
+          <button id="equal">=</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="./calc.js"></script>
+  </body>
+</html>
