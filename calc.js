@@ -8,8 +8,9 @@ const clear = document.querySelector('#clear');
 const clearAll = document.querySelector('#clearAll');
 const signChange = document.querySelector('#signChange');
 const sqrt = document.querySelector('#sqrt');
+const whiteBox = document.querySelector('#whiteBox');
 
-let x, y, thisSign;
+let x, y, thisSign, please;
 
 function emptyAfterEqual() {
   input1.classList.remove('none');
@@ -39,6 +40,11 @@ function signClick() {
   input2.classList.remove('none');
   // values between
   values.textContent = `${x} ${thisSign}`;
+  // show in right corner right sign and white box for minus in input2
+  if (thisSign === '--') {
+    values.textContent = `${x} -`;
+    whiteBox.classList.remove('none');
+  }
   // remove focus on input
   input2.focus();
 }
@@ -59,8 +65,11 @@ input1.addEventListener('keydown', (e) => {
     signClick();
   }
   if (e.key === '-') {
-    thisSign = '-';
-    signClick();
+    // we can write - in first input (before number)
+    if (input1.value.length > 0) {
+      thisSign = '--';
+      signClick();
+    }
   }
   if (e.key === '*') {
     thisSign = '*';
@@ -73,6 +82,15 @@ input1.addEventListener('keydown', (e) => {
   if (e.key === '^') {
     thisSign = '^';
     signClick();
+  }
+});
+
+// for input2 minus
+input2.addEventListener('keydown', (e) => {
+  if (e.key == '-') {
+    input2.value = '';
+    whiteBox.classList.add('none');
+    input2.classList.add('forMinus');
   }
 });
 
@@ -118,6 +136,7 @@ sqrt.addEventListener('click', function () {
 
   if (input2.classList.contains('none')) {
     input1.value = Math.sqrt(x);
+    values.textContent = `√${x} =`;
   }
   // write in second input
   if (input1.classList.contains('none')) {
@@ -129,8 +148,8 @@ sqrt.addEventListener('click', function () {
 // equal
 function equalResult(sqrt) {
   y = +input2.value;
-  // delete minus from keyboard
 
+  const sqrtRes2 = y;
   // y for sqrt
   if (sqrt === true) {
     y = Math.sqrt(y);
@@ -141,6 +160,16 @@ function equalResult(sqrt) {
   }
   if (thisSign === '-') {
     input1.value = x - y;
+  }
+  // for keybord minus
+  if (thisSign === '--') {
+    y = -y;
+    input1.value = x - y;
+    whiteBox.classList.add('none');
+    if (input2.classList.contains('forMinus')) {
+      y = sqrtRes2;
+      input1.value = x - y;
+    }
   }
   if (thisSign === '*') {
     input1.value = x * y;
@@ -153,7 +182,14 @@ function equalResult(sqrt) {
   }
 
   emptyAfterEqual();
+  // after equal
   values.textContent = `${x} ${thisSign} ${y} =`;
+  if (thisSign === '--') {
+    values.textContent = `${x} - ${y} =`;
+  }
+  if (sqrt === true) {
+    values.textContent = `${x} ${thisSign} √${sqrtRes2} =`;
+  }
   // focus on input
   input1.focus();
 }

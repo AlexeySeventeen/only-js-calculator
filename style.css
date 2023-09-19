@@ -53,6 +53,15 @@ input {
   top: 20px;
 }
 
+.whiteBox {
+  width: 5px;
+  height: 10px;
+  background-color: white;
+  position: absolute;
+  top: 45px;
+  left: 2px;
+}
+
 .none {
   display: none;
 }
