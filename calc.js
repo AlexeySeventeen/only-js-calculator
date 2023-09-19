@@ -1,16 +1,20 @@
 const input1 = document.querySelector('#input1');
 const input2 = document.querySelector('#input2');
-const allSign = document.querySelectorAll('[data-sign]');
+// keyboard
 const allNumber = document.querySelectorAll('[data-number]');
+const allSign = document.querySelectorAll('[data-sign]');
+// other sign
 const equal = document.querySelector('#equal');
-const values = document.querySelector('#values');
 const clear = document.querySelector('#clear');
 const clearAll = document.querySelector('#clearAll');
 const signChange = document.querySelector('#signChange');
 const sqrt = document.querySelector('#sqrt');
+// output
+const values = document.querySelector('#values');
+// hide minus
 const whiteBox = document.querySelector('#whiteBox');
 
-let x, y, thisSign, please;
+let x, y, thisSign;
 
 function emptyAfterEqual() {
   input1.classList.remove('none');
